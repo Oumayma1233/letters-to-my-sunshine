@@ -1,0 +1,1192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>To Adam, My Sunshine – 25 Letters</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    :root {
+      --bg: #050509;
+      --bg-soft: #0b0b12;
+      --accent: #d4af37;
+      --accent-soft: rgba(212, 175, 55, 0.15);
+      --text: #f5f5f5;
+      --text-muted: #a1a1b5;
+      --card-border: rgba(212, 175, 55, 0.25);
+      --shadow-soft: 0 18px 40px rgba(0, 0, 0, 0.6);
+      --radius-xl: 24px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #181824 0, #050509 45%, #000 100%);
+      color: var(--text);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      padding: 0;
+      margin: 0;
+      overflow-x: hidden;
+    }
+
+    .page {
+      min-height: 100vh;
+      padding: 32px 18px 64px;
+      max-width: 860px;
+      margin: 0 auto;
+      opacity: 0;
+      transform: translateY(20px);
+      transition:
+        opacity 0.7s ease,
+        transform 0.7s ease;
+    }
+
+    .page.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (min-width: 768px) {
+      .page {
+        padding: 40px 24px 80px;
+      }
+    }
+
+    /* Intro overlay */
+
+    .intro-overlay {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at top, #15151f 0, #020206 45%, #000 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      color: var(--text);
+      text-align: center;
+      transition: opacity 0.6s ease, visibility 0.6s ease;
+    }
+
+    .intro-overlay.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .intro-heart-circle {
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      border: 1px solid rgba(212, 175, 55, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      position: relative;
+      box-shadow: 0 0 25px rgba(0, 0, 0, 0.9);
+      background: radial-gradient(circle, rgba(212, 175, 55, 0.18), transparent);
+      animation: heartbeat 1.5s ease-in-out infinite;
+    }
+
+    .intro-heart-core {
+      width: 70px;
+      height: 70px;
+      border-radius: 999px;
+      background: radial-gradient(circle, rgba(255, 244, 189, 0.95), rgba(212, 175, 55, 0.05));
+      box-shadow:
+        0 0 28px rgba(212, 175, 55, 0.8),
+        0 0 60px rgba(0, 0, 0, 1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+    }
+
+    .intro-text-main {
+      font-size: 16px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      color: var(--accent);
+    }
+
+    .intro-text-sub {
+      font-size: 13px;
+      color: var(--text-muted);
+      max-width: 260px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    .intro-tap-hint {
+      position: absolute;
+      bottom: 40px;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      opacity: 0.7;
+    }
+
+    .intro-tap-hint::before {
+      content: "•";
+      margin-right: 6px;
+      color: var(--accent);
+    }
+
+    @keyframes heartbeat {
+      0% {
+        transform: scale(1);
+        box-shadow: 0 0 26px rgba(212, 175, 55, 0.7);
+      }
+      30% {
+        transform: scale(1.08);
+        box-shadow: 0 0 38px rgba(212, 175, 55, 0.95);
+      }
+      60% {
+        transform: scale(1);
+        box-shadow: 0 0 26px rgba(212, 175, 55, 0.7);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    /* Hero */
+
+    header.hero {
+      position: relative;
+      padding: 26px 22px 26px;
+      border-radius: var(--radius-xl);
+      background: linear-gradient(
+          135deg,
+          rgba(212, 175, 55, 0.12),
+          rgba(5, 5, 9, 0.9)
+        ),
+        radial-gradient(circle at top left, rgba(255, 255, 255, 0.05), transparent);
+      border: 1px solid rgba(212, 175, 55, 0.45);
+      box-shadow: var(--shadow-soft);
+      overflow: hidden;
+      margin-bottom: 28px;
+    }
+
+    @media (min-width: 768px) {
+      header.hero {
+        padding: 32px 30px 30px;
+      }
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(212, 175, 55, 0.5);
+      background-color: rgba(5, 5, 9, 0.7);
+      color: var(--accent);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .hero-badge-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 12px rgba(212, 175, 55, 0.9);
+    }
+
+    .hero-title {
+      font-size: 26px;
+      line-height: 1.25;
+      margin-bottom: 6px;
+    }
+
+    @media (min-width: 768px) {
+      .hero-title {
+        font-size: 32px;
+      }
+    }
+
+    .hero-subtitle {
+      color: var(--text-muted);
+      font-size: 14px;
+      max-width: 520px;
+      margin-bottom: 14px;
+    }
+
+    .hero-highlight {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 18px;
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .hero-meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .hero-meta-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 999px;
+      background: rgba(212, 175, 55, 0.7);
+    }
+
+    .hero-glow-orbit {
+      position: absolute;
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      border: 1px solid rgba(212, 175, 55, 0.35);
+      top: -120px;
+      right: -80px;
+      opacity: 0.8;
+      filter: blur(0.3px);
+    }
+
+    .hero-glow-orbit::after {
+      content: "";
+      position: absolute;
+      inset: 20%;
+      border-radius: inherit;
+      border: 1px dashed rgba(212, 175, 55, 0.25);
+    }
+
+    .hero-glow-core {
+      position: absolute;
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      top: -50px;
+      right: 20px;
+      background: radial-gradient(
+        circle,
+        rgba(255, 244, 189, 0.9),
+        rgba(212, 175, 55, 0.2),
+        transparent
+      );
+      box-shadow:
+        0 0 32px rgba(212, 175, 55, 0.7),
+        0 0 90px rgba(0, 0, 0, 0.9);
+      opacity: 0.9;
+    }
+
+    .hero-footer-note {
+      margin-top: 14px;
+      font-size: 11px;
+      color: var(--text-muted);
+      opacity: 0.9;
+    }
+
+    .hero-footer-note strong {
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .letters-timeline-label {
+      margin: 16px 4px 8px;
+      font-size: 12px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .letters-timeline-label span {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .letters-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      margin-top: 4px;
+    }
+
+    /* Letter cards */
+
+    .letter-card {
+      background: radial-gradient(
+          circle at top left,
+          rgba(212, 175, 55, 0.16),
+          transparent 52%
+        ),
+        radial-gradient(circle at bottom, #050509, #020208);
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--card-border);
+      padding: 18px 18px 20px;
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(26px);
+      transition:
+        opacity 0.7s ease,
+        transform 0.7s ease;
+    }
+
+    @media (min-width: 768px) {
+      .letter-card {
+        padding: 22px 24px 24px;
+      }
+    }
+
+    .letter-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .letter-number-tag {
+      position: absolute;
+      top: 14px;
+      right: 16px;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: rgba(5, 5, 9, 0.8);
+      padding: 3px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(212, 175, 55, 0.6);
+    }
+
+    .letter-meta {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .letter-meta span {
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .letter-title {
+      font-size: 17px;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    @media (min-width: 768px) {
+      .letter-title {
+        font-size: 18px;
+      }
+    }
+
+    .letter-body {
+      font-size: 14px;
+      color: var(--text);
+    }
+
+    .letter-body p + p {
+      margin-top: 8px;
+    }
+
+    .closing {
+      margin-top: 22px;
+      font-size: 13px;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+
+    .closing span {
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    /* Scroll to top button */
+
+    .scroll-top-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 16px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(212, 175, 55, 0.8);
+      background: radial-gradient(circle at top, #1a1a24, #050509);
+      color: var(--accent);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.85);
+      opacity: 0;
+      pointer-events: none;
+      transition:
+        opacity 0.3s ease,
+        transform 0.25s ease;
+      transform: translateY(16px);
+      z-index: 50;
+    }
+
+    .scroll-top-btn.visible {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    .scroll-top-btn span {
+      font-size: 16px;
+      line-height: 1;
+    }
+
+    /* Music button */
+
+    .music-btn {
+      position: fixed;
+      bottom: 20px;
+      left: 16px;
+      width: 40px;
+      height: 40px;
+      border-radius: 999px;
+      border: 1px solid rgba(212, 175, 55, 0.8);
+      background: radial-gradient(circle at top, #1a1a24, #050509);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      cursor: pointer;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.85);
+      color: var(--accent);
+      z-index: 50;
+      transition:
+        box-shadow 0.25s ease,
+        transform 0.2s ease,
+        background 0.25s ease;
+    }
+
+    .music-btn.playing {
+      box-shadow:
+        0 0 16px rgba(212, 175, 55, 0.9),
+        0 8px 26px rgba(0, 0, 0, 0.9);
+      background: radial-gradient(circle, rgba(212, 175, 55, 0.24), #050509);
+      transform: translateY(-1px);
+    }
+
+    .music-btn-icon {
+      pointer-events: none;
+    }
+
+    footer.page-footer {
+      margin-top: 30px;
+      padding: 12px 4px 0;
+      border-top: 1px solid rgba(212, 175, 55, 0.3);
+      font-size: 11px;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
+    footer.page-footer strong {
+      color: var(--accent);
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Intro overlay with heartbeat text -->
+  <div class="intro-overlay" id="introOverlay">
+    <div class="intro-heart-circle">
+      <div class="intro-heart-core">❤</div>
+    </div>
+    <div class="intro-text-main">Tap to enter my heart</div>
+    <div class="intro-text-sub">
+      For Adam, my sunshine. A quiet universe of words I’ve been carrying since 2018.
+    </div>
+    <div class="intro-tap-hint">tap anywhere to begin</div>
+  </div>
+
+  <!-- Background music (you will host the MP3 yourself) -->
+  <!-- IMPORTANT: upload your instrumental MP3 as "young_and_beautiful_instrumental.mp3" in the same folder as this file -->
+  <audio id="bgMusic" loop>
+    <source src="young_and_beautiful_instrumental.mp3" type="audio/mpeg" />
+    <!-- Fallback text -->
+    Your browser does not support the audio element.
+  </audio>
+
+  <div class="page" id="mainPage">
+    <header class="hero">
+      <div class="hero-badge">
+        <div class="hero-badge-dot"></div>
+        FOR ADAM · MY SUNSHINE
+      </div>
+      <h1 class="hero-title">
+        25 Letters for You,<br />
+        <span class="hero-highlight">Adam, my sunshine</span>
+      </h1>
+      <p class="hero-subtitle">
+        A dark, gentle universe of words written just for you. Since 2018, my heart has stayed
+        by your side – even from afar. Tonight, you scroll through
+        <span class="hero-highlight">everything I never stopped feeling</span>.
+      </p>
+      <div class="hero-meta">
+        <span><span class="hero-meta-dot"></span>From: Oumayma, your girl who loves you</span>
+        <span><span class="hero-meta-dot"></span>For: Adam – my sunshine, my boo</span>
+        <span><span class="hero-meta-dot"></span>Occasion: Your birthday</span>
+      </div>
+      <p class="hero-footer-note">
+        Scroll slowly. One letter at a time. Each one is a heartbeat that has been yours
+        <strong>since 2018</strong>.
+      </p>
+      <div class="hero-glow-orbit"></div>
+      <div class="hero-glow-core"></div>
+    </header>
+
+    <div class="letters-timeline-label">
+      <span>Letters</span> · a soft journey from 1 to 25
+    </div>
+
+    <main class="letters-wrapper">
+
+      <!-- 1 -->
+      <section class="letter-card" id="letter-1">
+        <div class="letter-number-tag">Letter 01</div>
+        <div class="letter-meta">To: <span>Adam, my sunshine</span></div>
+        <h2 class="letter-title">The First Time I Knew You Were Special</h2>
+        <div class="letter-body">
+          <p>Adam,</p>
+          <p>
+            I don’t remember the exact moment I fell for you – maybe it was the way you spoke,
+            the softness in your words, or simply the energy you carried. But I do remember the
+            feeling: warm, unexpected, and strangely familiar.
+          </p>
+          <p>
+            From the very beginning, you felt different. You weren’t just someone I talked to –
+            you were someone my heart recognized.
+          </p>
+          <p>
+            Even then, I knew you were going to matter. I just didn’t know <em>how much</em>.
+          </p>
+        </div>
+      </section>
+
+      <!-- 2 -->
+      <section class="letter-card" id="letter-2">
+        <div class="letter-number-tag">Letter 02</div>
+        <div class="letter-meta">To: <span>My lovely sunshine</span></div>
+        <h2 class="letter-title">The “Since 2018” Letter</h2>
+        <div class="letter-body">
+          <p>My lovely sunshine,</p>
+          <p>
+            Seven years. Seven whole years of knowing you.
+          </p>
+          <p>
+            Do you realize how rare it is to have someone stay this long in your heart without ever fading?
+          </p>
+          <p>
+            I’ve changed, you’ve changed, life changed – but you remained a constant light in my world.
+          </p>
+          <p>
+            2018 feels far, but the feeling you give me has never aged.
+          </p>
+        </div>
+      </section>
+
+      <!-- 3 -->
+      <section class="letter-card" id="letter-3">
+        <div class="letter-number-tag">Letter 03</div>
+        <div class="letter-meta">To: <span>Adam</span></div>
+        <h2 class="letter-title">I’ve Never Met You but I Know You</h2>
+        <div class="letter-body">
+          <p>Adam,</p>
+          <p>
+            People think you must meet someone to know them. But they don’t understand what it means to connect soul to soul.
+          </p>
+          <p>
+            I know your softness.<br />
+            I know your kindness.<br />
+            I know your silence, your warmth, your way of making me feel chosen.
+          </p>
+          <p>
+            I don’t need distance to measure love. My heart learned you without ever touching you.
+          </p>
+        </div>
+      </section>
+
+      <!-- 4 -->
+      <section class="letter-card" id="letter-4">
+        <div class="letter-number-tag">Letter 04</div>
+        <div class="letter-meta">To: <span>My sunshine</span></div>
+        <h2 class="letter-title">I’m Proud of You</h2>
+        <div class="letter-body">
+          <p>My sunshine,</p>
+          <p>
+            I’m proud of the man you are.
+          </p>
+          <p>
+            Proud of your strength, your resilience, your heart. Proud of the battles you don’t talk about but still fight.
+            Proud of how far you’ve come, even when no one was cheering for you.
+          </p>
+          <p>
+            You deserve to hear this: <strong>I’m so, so proud of you, Adam.</strong>
+          </p>
+        </div>
+      </section>
+
+      <!-- 5 -->
+      <section class="letter-card" id="letter-5">
+        <div class="letter-number-tag">Letter 05</div>
+        <div class="letter-meta">To: <span>My boo</span></div>
+        <h2 class="letter-title">Birthday Blessing</h2>
+        <div class="letter-body">
+          <p>Happy birthday, boo,</p>
+          <p>
+            May this new year bring you softness, joy, peace, and everything your heart quietly wishes for.
+          </p>
+          <p>
+            May you grow, shine, laugh, and feel loved in ways you’ve never felt before.
+          </p>
+          <p>
+            And may life be gentle with you – because you deserve gentleness.
+          </p>
+        </div>
+      </section>
+
+      <!-- 6 -->
+      <section class="letter-card" id="letter-6">
+        <div class="letter-number-tag">Letter 06</div>
+        <div class="letter-meta">To: <span>Adam</span></div>
+        <h2 class="letter-title">I Miss You Before Meeting You</h2>
+        <div class="letter-body">
+          <p>Adam,</p>
+          <p>
+            I miss you.
+          </p>
+          <p>
+            Not in a dramatic way – in a quiet, natural way.
+          </p>
+          <p>
+            I miss moments that haven’t happened yet: your smile in front of me, your voice next to me,
+            your presence in a room we share.
+          </p>
+          <p>
+            Missing you feels strange… but beautiful.
+          </p>
+        </div>
+      </section>
+
+      <!-- 7 -->
+      <section class="letter-card" id="letter-7">
+        <div class="letter-number-tag">Letter 07</div>
+        <div class="letter-meta">To: <span>My sunshine</span></div>
+        <h2 class="letter-title">If You Were Here Today</h2>
+        <div class="letter-body">
+          <p>My sunshine,</p>
+          <p>
+            If you were here today, I would give you the tightest birthday hug.
+          </p>
+          <p>
+            I’d whisper “happy birthday, boo” against your neck. I’d look at you with all the softness I carry.
+          </p>
+          <p>
+            We’d laugh, tease, and I’d make today unforgettable.
+          </p>
+          <p>
+            But even from afar, my heart celebrates you.
+          </p>
+        </div>
+      </section>
+
+      <!-- 8 -->
+      <section class="letter-card" id="letter-8">
+        <div class="letter-number-tag">Letter 08</div>
+        <div class="letter-meta">To: <span>Adam</span></div>
+        <h2 class="letter-title">What I Admire Most About You</h2>
+        <div class="letter-body">
+          <p>Adam,</p>
+          <p>
+            What I admire most is not your looks or your smile – though they still make me melt.
+          </p>
+          <p>
+            It’s your heart. Your gentleness. Your quiet strength. Your patience. The way you care,
+            even when you pretend you don’t.
+          </p>
+          <p>
+            You’re rare. And I see it clearly.
+          </p>
+        </div>
+      </section>
+
+      <!-- 9 -->
+      <section class="letter-card" id="letter-9">
+        <div class="letter-number-tag">Letter 09</div>
+        <div class="letter-meta">To: <span>My lovely sunshine</span></div>
+        <h2 class="letter-title">You’re My Home</h2>
+        <div class="letter-body">
+          <p>My lovely sunshine,</p>
+          <p>
+            You feel like home to me – not a place, but a feeling.
+          </p>
+          <p>
+            Warmth. Safety. Comfort. A sense of belonging that I’ve never felt with anyone else.
+          </p>
+          <p>
+            You’re not just someone I talk to. You’re someone my heart rests in.
+          </p>
+        </div>
+      </section>
+
+      <!-- 10 -->
+      <section class="letter-card" id="letter-10">
+        <div class="letter-number-tag">Letter 10</div>
+        <div class="letter-meta">To: <span>Adam</span></div>
+        <h2 class="letter-title">My Favorite Version of You</h2>
+        <div class="letter-body">
+          <p>Adam,</p>
+          <p>
+            My favorite version of you is the real one – the honest, unfiltered, simple you.
+          </p>
+          <p>
+            Your jokes. Your silence. Your calmness. Your comfort.
+          </p>
+          <p>
+            Every version of you feels special to me.
+          </p>
+        </div>
+      </section>
+
+      <!-- 11 -->
+      <section class="letter-card" id="letter-11">
+        <div class="letter-number-tag">Letter 11</div>
+        <div class="letter-meta">To: <span>My boo</span></div>
+        <h2 class="letter-title">Why I Choose You Every Day</h2>
+        <div class="letter-body">
+          <p>My boo,</p>
+          <p>
+            Loving you isn’t something I “fell into”.
+          </p>
+          <p>
+            It’s a choice I make every single day.
+          </p>
+          <p>
+            I choose you because my heart is peaceful with you. Because you feel like light.
+            Because even from afar, you give me warmth.
+          </p>
+          <p>
+            I choose you because… it’s you.
+          </p>
+        </div>
+      </section>
+
+      <!-- 12 -->
+      <section class="letter-card" id="letter-12">
+        <div class="letter-number-tag">Letter 12</div>
+        <div class="letter-meta">To: <span>Adam</span></div>
+        <h2 class="letter-title">You Don’t Know How Much You Mean to Me</h2>
+        <div class="letter-body">
+          <p>Adam,</p>
+          <p>
+            You really don’t.
+          </p>
+          <p>
+            You don’t know how your name feels in my mind. How your presence changes my whole mood.
+          </p>
+          <p>
+            How your existence fills spaces I didn’t know were empty.
+          </p>
+          <p>
+            You mean more than you will ever understand.
+          </p>
+        </div>
+      </section>
+
+      <!-- 13 -->
+      <section class="letter-card" id="letter-13">
+        <div class="letter-number-tag">Letter 13</div>
+        <div class="letter-meta">To: <span>My sunshine</span></div>
+        <h2 class="letter-title">You Deserve the World</h2>
+        <div class="letter-body">
+          <p>My sunshine,</p>
+          <p>
+            You deserve love that feels safe. You deserve laughter that’s real. You deserve success,
+            peace, and happiness that stays.
+          </p>
+          <p>
+            I hope life gives you everything you’ve always given others – gentleness, warmth, and care.
+          </p>
+        </div>
+      </section>
+
+      <!-- 14 -->
+      <section class="letter-card" id="letter-14">
+        <div class="letter-number-tag">Letter 14</div>
+        <div class="letter-meta">To: <span>Adam</span></div>
+        <h2 class="letter-title">I Believe in Your Dreams</h2>
+        <div class="letter-body">
+          <p>Adam,</p>
+          <p>
+            Your dreams matter – and I believe in every single one of them.
+          </p>
+          <p>
+            You’re capable of more than you think. You’re smart, talented, and stronger than you
+            give yourself credit for.
+          </p>
+          <p>
+            Whatever you want, you can reach it. And I’ll be cheering for you, always.
+          </p>
+        </div>
+      </section>
+
+      <!-- 15 -->
+      <section class="letter-card" id="letter-15">
+        <div class="letter-number-tag">Letter 15</div>
+        <div class="letter-meta">To: <span>My boo</span></div>
+        <h2 class="letter-title">Our Future (Soft Version)</h2>
+        <div class="letter-body">
+          <p>My boo,</p>
+          <p>
+            I don’t want to rush anything or make it heavy.
+          </p>
+          <p>
+            But sometimes I imagine small things: a walk together, a quiet evening, a shared laugh,
+            your hand in mine.
+          </p>
+          <p>
+            Simple moments – but meaningful ones. The kind I hope we get to live.
+          </p>
+        </div>
+      </section>
+
+      <!-- 16 -->
+      <section class="letter-card" id="letter-16">
+        <div class="letter-number-tag">Letter 16</div>
+        <div class="letter-meta">To: <span>Adam</span></div>
+        <h2 class="letter-title">Thank You for Existing</h2>
+        <div class="letter-body">
+          <p>Adam,</p>
+          <p>
+            Thank you for being alive. Thank you for being here in this timeline with me.
+          </p>
+          <p>
+            Thank you for your messages, your presence, your light. Thank you for being someone
+            worth loving.
+          </p>
+          <p>
+            Thank you… for being you.
+          </p>
+        </div>
+      </section>
+
+      <!-- 17 -->
+      <section class="letter-card" id="letter-17">
+        <div class="letter-number-tag">Letter 17</div>
+        <div class="letter-meta">To: <span>My sunshine</span></div>
+        <h2 class="letter-title">When I Think of You…</h2>
+        <div class="letter-body">
+          <p>My sunshine,</p>
+          <p>
+            When I think of you, I think of warm colors – gold, morning light, soft blue skies.
+          </p>
+          <p>
+            I think of calm music. I think of slow smiles. I think of peace.
+          </p>
+          <p>
+            You’re not just a thought. You’re a feeling.
+          </p>
+        </div>
+      </section>
+
+      <!-- 18 -->
+      <section class="letter-card" id="letter-18">
+        <div class="letter-number-tag">Letter 18</div>
+        <div class="letter-meta">To: <span>Adam</span></div>
+        <h2 class="letter-title">You Are My Peace</h2>
+        <div class="letter-body">
+          <p>Adam,</p>
+          <p>
+            In a loud world, you are the quiet place in my mind.
+          </p>
+          <p>
+            You calm me. You ground me. You make everything feel lighter.
+          </p>
+          <p>
+            You’re my peace – without even trying.
+          </p>
+        </div>
+      </section>
+
+      <!-- 19 -->
+      <section class="letter-card" id="letter-19">
+        <div class="letter-number-tag">Letter 19</div>
+        <div class="letter-meta">To: <span>My boo</span></div>
+        <h2 class="letter-title">You Are My Chaos Too</h2>
+        <div class="letter-body">
+          <p>Boo,</p>
+          <p>
+            You’re also the one who makes my heart race. Who makes me shy, nervous, excited.
+          </p>
+          <p>
+            You’re the soft peace <em>and</em> the beautiful chaos.
+          </p>
+          <p>
+            And I wouldn’t change a thing.
+          </p>
+        </div>
+      </section>
+
+      <!-- 20 -->
+      <section class="letter-card" id="letter-20">
+        <div class="letter-number-tag">Letter 20</div>
+        <div class="letter-meta">To: <span>Adam</span></div>
+        <h2 class="letter-title">If You Ever Doubt Yourself…</h2>
+        <div class="letter-body">
+          <p>Adam,</p>
+          <p>
+            If you ever feel tired, lost, or unsure, remember this:
+          </p>
+          <p>
+            You are loved. You are worthy. You are capable. You are more special than you see.
+          </p>
+          <p>
+            And even when you doubt yourself, I will never doubt you.
+          </p>
+        </div>
+      </section>
+
+      <!-- 21 -->
+      <section class="letter-card" id="letter-21">
+        <div class="letter-number-tag">Letter 21</div>
+        <div class="letter-meta">To: <span>My lovely sunshine</span></div>
+        <h2 class="letter-title">I Want to Meet You One Day</h2>
+        <div class="letter-body">
+          <p>My lovely sunshine,</p>
+          <p>
+            One day – in the right moment, in the right timing – I want to meet you.
+          </p>
+          <p>
+            Not to change anything. Just to make real what my heart already knows.
+          </p>
+          <p>
+            To finally see the smile I’ve imagined a thousand times.
+          </p>
+        </div>
+      </section>
+
+      <!-- 22 -->
+      <section class="letter-card" id="letter-22">
+        <div class="letter-number-tag">Letter 22</div>
+        <div class="letter-meta">To: <span>Adam</span></div>
+        <h2 class="letter-title">You Changed Me</h2>
+        <div class="letter-body">
+          <p>Adam,</p>
+          <p>
+            Since 2018, you’ve changed me in ways you’ll never understand.
+          </p>
+          <p>
+            You taught me softness. You taught me patience.
+          </p>
+          <p>
+            You taught me what a deep connection feels like.
+          </p>
+          <p>
+            You changed me – quietly, beautifully.
+          </p>
+        </div>
+      </section>
+
+      <!-- 23 -->
+      <section class="letter-card" id="letter-23">
+        <div class="letter-number-tag">Letter 23</div>
+        <div class="letter-meta">To: <span>My boo</span></div>
+        <h2 class="letter-title">Love Confession</h2>
+        <div class="letter-body">
+          <p>My boo,</p>
+          <p>
+            I love you.
+          </p>
+          <p>
+            Not in a rushed way. Not in a childish way.
+          </p>
+          <p>
+            But in a deep, warm, gentle way. A love that stayed through years, distance, and silence.
+          </p>
+          <p>
+            A love that grew with time. A love that chose you.
+          </p>
+          <p>
+            I love you, Adam.
+          </p>
+        </div>
+      </section>
+
+      <!-- 24 -->
+      <section class="letter-card" id="letter-24">
+        <div class="letter-number-tag">Letter 24</div>
+        <div class="letter-meta">To: <span>My sunshine</span></div>
+        <h2 class="letter-title">I’ll Always Be Here</h2>
+        <div class="letter-body">
+          <p>My sunshine,</p>
+          <p>
+            No matter what happens, where life takes us, or how things change…
+          </p>
+          <p>
+            I’ll always be someone who cares for you. Someone on your side.
+          </p>
+          <p>
+            Someone who wishes the best for you. Always.
+          </p>
+        </div>
+      </section>
+
+      <!-- 25 -->
+      <section class="letter-card" id="letter-25">
+        <div class="letter-number-tag">Letter 25</div>
+        <div class="letter-meta">To: <span>Adam, my all</span></div>
+        <h2 class="letter-title">Final Birthday Letter – My All</h2>
+        <div class="letter-body">
+          <p>Adam,</p>
+          <p>
+            Happy birthday, my sunshine.
+          </p>
+          <p>
+            This is the last letter, but my feelings don’t end here.
+          </p>
+          <p>
+            You’ve been part of my world for seven years – seven years of light, warmth, and quiet love.
+          </p>
+          <p>
+            You’re the person I think of when I talk about softness. The person I protect in my heart.
+            The person who makes my world brighter just by existing.
+          </p>
+          <p>
+            You’re my sunshine, my boo, my lovely sunshine – today and always.
+          </p>
+          <p>
+            I hope this year brings you everything your heart desires. And I hope, in some small way,
+            you feel how deeply you are loved.
+          </p>
+          <p>
+            Happy Birthday, Adam.<br />
+            From the girl whose heart has been yours since 2018. 🖤
+          </p>
+        </div>
+        <div class="closing">
+          From always,<br />
+          <span>Oumayma</span>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="page-footer">
+      Crafted in the dark, glowing only for <strong>Adam</strong> ·
+      Since <strong>2018</strong> · With all my heart.
+    </footer>
+  </div>
+
+  <!-- Scroll to top button -->
+  <button class="scroll-top-btn" id="scrollTopBtn">
+    <span>↑</span>
+    Top
+  </button>
+
+  <!-- Music button -->
+  <button class="music-btn" id="musicBtn" aria-label="Toggle music">
+    <span class="music-btn-icon">♫</span>
+  </button>
+
+  <script>
+    const cards = document.querySelectorAll(".letter-card");
+    const mainPage = document.getElementById("mainPage");
+    const introOverlay = document.getElementById("introOverlay");
+    const bgMusic = document.getElementById("bgMusic");
+    const musicBtn = document.getElementById("musicBtn");
+    const scrollTopBtn = document.getElementById("scrollTopBtn");
+
+    // Intersection observer for cards
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.18,
+      }
+    );
+
+    cards.forEach((card) => observer.observe(card));
+
+    // Scroll-to-top button
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 320) {
+        scrollTopBtn.classList.add("visible");
+      } else {
+        scrollTopBtn.classList.remove("visible");
+      }
+    });
+
+    scrollTopBtn.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    // Music toggle
+    function setMusicPlayingUI(isPlaying) {
+      if (isPlaying) {
+        musicBtn.classList.add("playing");
+      } else {
+        musicBtn.classList.remove("playing");
+      }
+    }
+
+    musicBtn.addEventListener("click", async () => {
+      if (bgMusic.paused) {
+        try {
+          await bgMusic.play();
+          setMusicPlayingUI(true);
+        } catch (e) {
+          setMusicPlayingUI(false);
+        }
+      } else {
+        bgMusic.pause();
+        setMusicPlayingUI(false);
+      }
+    });
+
+    // Intro overlay click → reveal page + start music
+    introOverlay.addEventListener("click", async () => {
+      introOverlay.classList.add("hidden");
+      mainPage.classList.add("visible");
+      // try to start music on first user interaction
+      try {
+        await bgMusic.play();
+        setMusicPlayingUI(true);
+      } catch (e) {
+        // if browser blocks autoplay, just leave button for manual tap
+        setMusicPlayingUI(false);
+      }
+    });
+
+    // In case JS loads after page, ensure main content hidden until intro click
+    window.addEventListener("load", () => {
+      // Content will become visible only after intro click
+    });
+  </script>
+</body>
+</html>
